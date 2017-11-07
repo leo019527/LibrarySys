@@ -22,9 +22,7 @@
           <h1>coding by <a href="https://github.com/leo019527">leo019527</a></h1>
           <nav id="nav">
               <ul>
-                  <li style="white-space: nowrap;"><a href="index.html">Home</a></li>
-
-
+                  <li style="white-space: nowrap;"><a href="index.jsp">Home</a></li>
               </ul>
           </nav>
       </header>
@@ -36,8 +34,7 @@
           <ul class="actions">
               <%//TODO:加入登录%>
               <li><a href="#" class="button special">Sign Up</a></li>
-              <%//TODO:加入注册%>
-              <li><a href="#" class="button">register</a></li>
+              <li><a href="register.jsp" class="button">register</a></li>
           </ul>
       </section>
 
