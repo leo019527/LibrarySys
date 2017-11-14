@@ -35,13 +35,13 @@
         </header>
         <div class="box">
             <%//TODO:添加注册后台处理%>
-            <form method="post" action="#">
+            <form method="post" action="/register">
                 <div class="row uniform 50%">
                     <div class="6u 12u(mobilep)">
                         <input value="" id="username" name="username" placeholder="用户名" autocomplete="off" maxlength="10" type="text">
                     </div>
                     <div class="6u 12u(mobilep)">
-                        <input value="" id="psw" name="psw" placeholder="密码" autocomplete="off" maxlength="16" type="password">
+                        <input value="" id="psw" name="psw" placeholder="密码" autocomplete="off" maxlength="16" type="password" pattern="[0-9a-zA-Z]+">
                     </div>
                 </div>
                 <div class="row uniform 50%">
