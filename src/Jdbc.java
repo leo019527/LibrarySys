@@ -3,17 +3,17 @@ import java.sql.*;
 /**
  * Created by 李凌耀 on 2017/11/21.
  */
-public class jdbc {
-    private final String url = "jdbc:mysql://127.0.0.1/spj?useSSL=true";
+public class Jdbc {
+    private final String url = "Jdbc:mysql://127.0.0.1/bookadmin?useSSL=true";
     private final String name = "com.mysql.jdbc.Driver";
     private final String user = "root";
     private final String password = "";
     private Connection conn = null;
     Statement statement = null;
 
-    private static final jdbc instance = new jdbc();
+    private static final Jdbc instance = new Jdbc();
 
-    private jdbc()
+    private Jdbc()
     {
         try{
             Class.forName(name);
@@ -30,7 +30,7 @@ public class jdbc {
         }
     }
 
-    public static jdbc getInstance()
+    public static Jdbc getInstance()
     {
         return instance;
     }
@@ -47,11 +47,12 @@ public class jdbc {
         return null;
     }
 
-    public void insertUpdateDelete(PreparedStatement psql)
+    public void insertUpdateDelete(String sql)
     {
         try {
-            psql.executeUpdate();
-            psql.close();
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
         } catch (SQLException e) {
             System.out.println("增删改错误");
             e.printStackTrace();

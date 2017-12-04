@@ -35,7 +35,7 @@
         </header>
         <div class="box">
             <%//TODO:添加注册后台处理%>
-            <form method="post" action="/register">
+            <form method="post" action="register">
                 <div class="row uniform 50%">
                     <div class="6u 12u(mobilep)">
                         <input value="" id="username" name="username" placeholder="用户名" autocomplete="off" maxlength="10" type="text">
@@ -45,14 +45,20 @@
                     </div>
                 </div>
                 <div class="row uniform 50%">
-                    <div class="6u 12u(mobilep)" style="float: left;">
+                    <div class="12u" style="float: left;">
 
                         <input value="" id="readername" name="readername" autocomplete="off" placeholder="姓名" type="text">
                     </div>
-                    <div class="6u 12u(mobilep)">
+                </div>
+                <div class="row uniform 50%">
+                    <div class="12u">
+                        <div class="select-wrapper">
+                            <select name="sex" id="sex">
 
-                        <input value="" autocomplete="off" id="sex" name="sex" maxlength="1" partten="['男'|'女']" placeholder="性别" title="输入男/女" type="text">
-
+                                <option value="男">男</option>
+                                <option value="女">女</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="row uniform 50%">
@@ -67,10 +73,11 @@
                 </div>
                 <div class="row uniform 50%">
                     <div class="12u">
-                        <input value="" name="phone" id="cardid" maxlength="18" pattern="(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)" placeholder="身份证号码" type="text">
+                        <input value="" name="cardid" id="cardid" maxlength="18" pattern="(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)" placeholder="身份证号码" type="text">
                     </div>
 
-                </div><div class="row uniform 50%">
+                </div>
+                <div class="row uniform 50%">
                 <div class="12u">
                     <input value="" id="day" name="day" type="hidden">
                 </div>
