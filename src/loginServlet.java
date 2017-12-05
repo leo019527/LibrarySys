@@ -31,11 +31,14 @@ public class loginServlet extends HttpServlet {
                     response.addCookie(loginCookie);
                     response.sendRedirect("user.jsp");
                 }
+                return;
             }
         } catch (SQLException e) {
             request.setAttribute("error","用户不存在");
             request.getRequestDispatcher("error.jsp").forward(request,response);
         }
+        request.setAttribute("error","用户不存在");
+        request.getRequestDispatcher("error.jsp").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

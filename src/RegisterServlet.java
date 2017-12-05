@@ -68,8 +68,7 @@ public class RegisterServlet extends HttpServlet {
         instance.insertUpdateDelete(sql);
         Cookie loginCookie = new Cookie("loginname",username);
         response.addCookie(loginCookie);
-        //TODO:注册成功跳转
-//        response.sendRedirect("index.jsp");
+        response.sendRedirect("user.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
