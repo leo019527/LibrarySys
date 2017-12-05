@@ -1,5 +1,6 @@
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,8 +42,7 @@ public class RegisterServlet extends HttpServlet {
         String UsernameSQL = "SELECT username from user where username='"+username+"'";
         ResultSet SUsername = instance.select(UsernameSQL);
         try {
-            if (SUsername.next())
-            {
+            if (SUsername.next()) {
                 request.setAttribute("error","用户名重复");
                 request.getRequestDispatcher("error.jsp").forward(request,response);
                 return;
@@ -66,6 +66,8 @@ public class RegisterServlet extends HttpServlet {
                 "(select max(readerid) from readers)" +
                 ")";
         instance.insertUpdateDelete(sql);
+        Cookie loginCookie = new Cookie("loginname",username);
+        response.addCookie(loginCookie);
         //TODO:注册成功跳转
 //        response.sendRedirect("index.jsp");
     }
