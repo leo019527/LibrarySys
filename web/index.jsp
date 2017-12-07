@@ -10,10 +10,12 @@
 <%
     Cookie[] cookies = request.getCookies();
     Cookie username = null;
-    for(Cookie c:cookies) {
-        if(c.getName().equals("loginname")) {
-            username = c;
-            break;
+    if(cookies != null) {
+        for (Cookie c : cookies) {
+            if (c.getName().equals("loginname")) {
+                username = c;
+                break;
+            }
         }
     }
     String uname = null;

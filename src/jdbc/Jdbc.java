@@ -1,10 +1,12 @@
+package jdbc;
+
 import java.sql.*;
 
 /**
  * Created by 李凌耀 on 2017/11/21.
  */
 public class Jdbc {
-    private final String url = "Jdbc:mysql://127.0.0.1/bookadmin?useSSL=true";
+    private final String url = "jdbc:mysql://localhost:3306/bookadmin?useSSL=true";
     private final String name = "com.mysql.jdbc.Driver";
     private final String user = "root";
     private final String password = "";

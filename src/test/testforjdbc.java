@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
  * Created by 李凌耀 on 2017/11/14.
  */
 public class testforjdbc {
-    public static final String url = "Jdbc:mysql://127.0.0.1/bookadmin";
+    public static final String url = "jdbc:mysql://localhost:3306/bookadmin";
     public static final String name = "com.mysql.jdbc.Driver";
     public static final String user = "root";
     public static final String password = "";
