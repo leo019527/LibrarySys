@@ -27,21 +27,21 @@
         <div class="features-row">
             <section>
                 <span class="icon major fa-cloud accent2"></span>
-                <h3>查询图书信息</h3>
+                <h3><a href="rootuser/book.jsp"> 查询图书信息</a></h3>
             </section>
             <section>
                 <span class="icon major fa-cloud accent3"></span>
-                <h3>查询读者信息</h3>
+                <h3><a href="rootuser/user.jsp"> 查询读者信息</a></h3>
             </section>
         </div>
         <div class="features-row">
             <section>
                 <span class="icon major fa-cloud accent4"></span>
-                <h3>图书入库</h3>
+                <h3><a href="rootuser/bookin.jsp"> 图书入库</a></h3>
             </section>
             <section>
                 <span class="icon major fa-cloud accent5"></span>
-                <h3>办理借书证</h3>
+                <h3><a href="rootuser/cardcheckin.jsp"> 办理借书证</a></h3>
             </section>
         </div>
         <div class="features-row">

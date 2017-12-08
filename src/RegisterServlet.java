@@ -36,7 +36,6 @@ public class RegisterServlet extends HttpServlet {
             e.printStackTrace();
         }
         String phone = request.getParameter("phone");
-        String cardid = request.getParameter("cardid");
         Calendar now = Calendar.getInstance();
         String nowData = now.get(Calendar.YEAR)+"-"+now.get(Calendar.MONTH)+"-"+now.get(Calendar.DAY_OF_MONTH);
         //</editor-fold>
@@ -52,13 +51,12 @@ public class RegisterServlet extends HttpServlet {
         } catch (SQLException e) {
         }
 
-        String sql = "INSERT INTO readers(readername,sex,birthday,phone,cardid,level,day) values('" +
+        String sql = "INSERT INTO readers(readername,sex,birthday,phone,level,day) values('" +
                 readername + "','" +
                 sex + "','" +
                 new java.sql.Date(birthday.getTime()) + "'," +
                 phone + "," +
-                cardid + "," +
-                1 + ",'" +
+                0 + ",'" +
                 nowData +
                 "')";
         instance.insertUpdateDelete(sql);

@@ -33,7 +33,6 @@
             <p style="">Tell us some information about you</p>
         </header>
         <div class="box">
-            <%//TODO:添加注册后台处理%>
             <form method="post" action="register">
                 <div class="row uniform 50%">
                     <div class="6u 12u(mobilep)">
@@ -69,12 +68,6 @@
                     <div class="12u">
                         <input value="" placeholder="手机号码" maxlength="11" pattern="1[34578]\d{9}" id="phone" name="phone" type="text">
                     </div>
-                </div>
-                <div class="row uniform 50%">
-                    <div class="12u">
-                        <input value="" name="cardid" id="cardid" maxlength="18" pattern="(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)" placeholder="身份证号码" type="text">
-                    </div>
-
                 </div>
                 <div class="row uniform 50%">
                 <div class="12u">
