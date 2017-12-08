@@ -40,8 +40,8 @@
                 <h3><a href="rootuser/bookin.jsp"> 图书入库</a></h3>
             </section>
             <section>
-                <span class="icon major fa-cloud accent5"></span>
-                <h3><a href="rootuser/cardcheckin.jsp"> 办理借书证</a></h3>
+                <span class="icon major fa-cloud accent3"></span>
+                <h3>逾期未还处理</h3>
             </section>
         </div>
         <div class="features-row">
@@ -49,12 +49,6 @@
                 <span class="icon major fa-cloud accent2"></span>
                 <h3>图书借阅与归还</h3>
             </section>
-            <section>
-                <span class="icon major fa-cloud accent3"></span>
-                <h3>逾期未还处理</h3>
-            </section>
-        </div>
-        <div class="features-row">
             <section>
                 <span class="icon major fa-cloud accent4"></span>
                 <h3>挂失处理</h3>

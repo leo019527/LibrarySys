@@ -11,6 +11,28 @@
 <%
     request.setCharacterEncoding("UTF-8");
     Jdbc instance = Jdbc.getInstance();
+    String checkin = request.getParameter("checkin");
+    if(checkin != null) {
+        String s = "select max(cardid) s from readers";
+        ResultSet select = instance.select(s);
+        int c = 0;
+        try {
+            select.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String tmp = null;
+        try {
+            tmp = select.getString("s");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if(tmp != null)
+            c = Integer.parseInt(tmp);
+        String caid = request.getParameter("caid");
+        String sqls = "UPDATE readers set cardname='图书证',cardid="+c+"+1,level="+caid+",day=curdate() where readerid="+checkin;
+        instance.insertUpdateDelete(sqls);
+    }
     String name = request.getParameter("name");
     if(name == null) name="";
     String id = request.getParameter("id");
@@ -79,23 +101,45 @@
                         <th>day</th>
                         <th>username</th>
                         <th>password</th>
+                        <th>图书证办理</th>
                     </tr>
                 </thead>
                 <tbody>
                     <%try {
                         while(select.next()){%>
                         <tr>
-                            <td><%=select.getString("readerid")%></td>
+                            <%
+                                String tmpid = select.getString("readerid");
+                            %>
+                            <td><%=tmpid%></td>
                             <td><%=select.getString("readername")%></td>
                             <td><%=select.getString("sex")%></td>
                             <td><%=select.getString("birthday")%></td>
                             <td><%=select.getString("phone")%></td>
-                            <td><%=select.getString("cardname")%></td>
+                            <%
+                                String tmp = select.getString("cardname");
+                            %>
+                            <td><%=tmp%></td>
                             <td><%=select.getString("cardid")%></td>
                             <td><%=select.getString("level")%></td>
                             <td><%=select.getString("day")%></td>
                             <td><%=select.getString("username")%></td>
                             <td><%=select.getString("psw")%></td>
+                            <%if(tmp == null){%>
+                                <form action="user.jsp" method="post">
+                                    <td>
+                                        <select name="caid" style="width: 6em;height: 2em;margin-bottom: 0.5em;">
+                                            <option value="1">vip 1</option>
+                                            <option value="2">vip 2</option>
+                                            <option value="3">vip 3</option>
+                                        </select>
+                                        <input type="submit" value="办理借书证" class="button small"/>
+                                    </td>
+                                    <input type="hidden" name="checkin" value="<%=tmpid%>">
+                                </form>
+                            <%}else {%>
+                                <td></td>
+                            <%}%>
                         </tr>
                         <%}
                         }catch (SQLException e){

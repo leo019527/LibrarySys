@@ -56,9 +56,7 @@ public class RegisterServlet extends HttpServlet {
                 sex + "','" +
                 new java.sql.Date(birthday.getTime()) + "'," +
                 phone + "," +
-                0 + ",'" +
-                nowData +
-                "')";
+                0 + ")";
         instance.insertUpdateDelete(sql);
         sql = "INSERT INTO USER values('"+
                 username+ "','"+
