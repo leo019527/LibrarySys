@@ -79,7 +79,7 @@
                 return false
             }
             uid = uid.innerHTML;
-            var uvip = document.getElementById("uvip");
+            var uvip = document.getElementById("uvip").innerHTML;
             var xmlhttp;
             if(window.XMLHttpRequest){
                 xmlhttp = new XMLHttpRequest();
@@ -88,7 +88,12 @@
             }
             xmlhttp.onreadystatechange = function () {
                 if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                    document.getElementById("borrowDIV").innerHTML=xmlhttp.responseText;
+                    var text = xmlhttp.responseText;
+                    if(text != "1") {
+                        document.getElementById("borrowDIV").innerHTML = text;
+                    }else {
+                        alert("借书超过上限");
+                    }
                     submit1();
                 }
             };
@@ -174,13 +179,11 @@
                 <div class="12u box" style="width: 100%;border-bottom: solid 4px;border-right: solid;border-top: solid 1px;border-left: solid 1px;padding: 1em 1em 2em 1em;">
                     <p style="font-size: 1em;border-top: none;border-bottom: solid 1px #d5d5d5;margin-bottom: 0.5em;">借阅信息</p>
                     <div id="borrowDIV">
-                        <%--TODO:借阅--%>
                     </div>
                 </div>
                 <div class="12u box" style="width: 100%;border-bottom: solid 4px;border-right: solid;border-top: solid 1px;border-left: solid 1px;padding: 1em 1em 2em 1em;">
                     <p style="font-size: 1em;border-top: none;border-bottom: solid 1px #d5d5d5;margin-bottom: 0.5em;">遗失信息</p>
                     <div id="lossDIV">
-                        <%--TODO:遗失--%>
                     </div>
                 </div>
             </div>

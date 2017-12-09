@@ -57,14 +57,12 @@ public class RegisterServlet extends HttpServlet {
                 new java.sql.Date(birthday.getTime()) + "'," +
                 phone + "," +
                 0 + ")";
-        System.out.println(sql);
         instance.insertUpdateDelete(sql);
         sql = "INSERT INTO USER values('"+
                 username+ "','"+
                 psw + "'," +
                 "(select max(readerid) from readers)" +
                 ")";
-        System.out.println(sql);
         instance.insertUpdateDelete(sql);
         Cookie loginCookie = new Cookie("loginname",username);
         response.addCookie(loginCookie);

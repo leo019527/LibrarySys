@@ -38,7 +38,6 @@ public class rootuserBookSearchServlet extends HttpServlet {
                     + "author like '%" + author + "%' and "
                     + "publishing like '%" + publishing + "%'";
         }
-        System.out.println(sql);
         ResultSet selected = instance.select(sql);
         String[] cat = {"计算机技术","自然科学","医学","农林","建筑","科普","通信","化学","物理","美文"};
         try {
