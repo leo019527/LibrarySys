@@ -47,7 +47,7 @@
         <div class="features-row">
             <section>
                 <span class="icon major fa-cloud accent2"></span>
-                <h3>图书借阅与归还</h3>
+                <h3><a href="rootuser/borrowandreturn.jsp"> 图书借阅与归还</a></h3>
             </section>
             <section>
                 <span class="icon major fa-cloud accent4"></span>
