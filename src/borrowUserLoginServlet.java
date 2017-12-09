@@ -32,16 +32,17 @@ public class borrowUserLoginServlet extends HttpServlet {
                 returnfiles += "<p id='uid' style=\"font-size: 1em;margin-bottom: 0.5em;\">用户编号："+readerid1+"</p>";
                 returnfiles += "<p style=\"font-size: 1em;margin-bottom: 0.5em;\">用户姓名："+readername+"</p>";
                 returnfiles += "<p id='uvip'style=\"font-size: 1em;margin-bottom: 0.5em;\">VIP等级："+level+"</p>";
-                returnfiles += "<a class=\"button special icon fa-search\" onClick=\"quit()\">退出</a>\001<div class='table-wrapper'><table class='alt'>" +
+                returnfiles += "<a class=\"button special icon\" onClick=\"quit()\">退出</a>\001<div class='table-wrapper'><table class='alt'>" +
                         "<thead><tr><th>bookname</th><th>dateborrow</th><th>归还</th></tr></thead><tbody>";
                 String sql1 = "select bookname,dateborrow FROM books inner join borrow on books.bookid=borrow.bookid WHERE readerid=" + readerid1 + " and loss<>1 and datereturn is NULL";
                 ResultSet select1 = instance.select(sql1);
                 while (select1.next())
                 {
-                    String tmp = select1.getString("bookname");
-                    returnfiles += "<tr><td>"+tmp+"</td>";
-                    returnfiles += "<td>"+select1.getString("dateborrow")+"</td>";
-                    returnfiles += "<td><a class='button alt small' onClick='returnBooks("+ tmp +")'>归还</a></td></tr>";
+                    String tmp1 = select1.getString("bookname");
+                    returnfiles += "<tr><td>" + tmp1 + "</td>";
+                    String tmp = select1.getString("dateborrow");
+                    returnfiles += "<td>" + tmp + "</td>";
+                    returnfiles += "<td><a class='button alt small' onclick='reBooks(\"" + tmp + "\")'>归还</a></td></tr>";
                 }
                 returnfiles += "</tbody></table></div>\001";
                 returnfiles += "<div class='table-wrapper'><table class='alt'>" +

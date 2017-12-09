@@ -100,6 +100,30 @@
             xmlhttp.open("GET","http://localhost:8080/library/borrowServlet?readerid="+uid+"&bookid="+bookid+"&vip="+uvip,true);
             xmlhttp.send(null);
         }
+
+        function reBooks(borrowtime) {
+            alert("in");
+            var uid = document.getElementById("uid");
+            if(uid == null){
+                alert("未登录");
+                return false
+            }
+            uid = uid.innerHTML;
+            var xmlhttp;
+            if(window.XMLHttpRequest){
+                xmlhttp = new XMLHttpRequest();
+            }else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                    document.getElementById("borrowDIV").innerHTML=xmlhttp.responseText;
+                    submit1()
+                }
+            };
+            xmlhttp.open("GET","http://localhost:8080/library/returnServlet?uid="+uid+"&borrowtime="+borrowtime,true);
+            xmlhttp.send(null);
+        }
     </script>
 </head>
 <body>

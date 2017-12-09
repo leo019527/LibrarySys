@@ -41,10 +41,11 @@ public class borrowServlet extends HttpServlet {
             ResultSet select1 = instance.select(sql3);
             try {
                 while (select1.next()) {
-                    String tmp = select1.getString("bookname");
-                    returnfiles += "<tr><td>" + tmp + "</td>";
-                    returnfiles += "<td>" + select1.getString("dateborrow") + "</td>";
-                    returnfiles += "<td><a class='button alt small' onClick='returnBooks(" + tmp + ")'>归还</a></td></tr>";
+                    String tmp1 = select1.getString("bookname");
+                    returnfiles += "<tr><td>" + tmp1 + "</td>";
+                    String tmp = select1.getString("dateborrow");
+                    returnfiles += "<td>" + tmp + "</td>";
+                    returnfiles += "<td><a class='button alt small' onclick='reBooks(\"" + tmp + "\")'>归还</a></td></tr>";
                 }
                 returnfiles += "</tbody></table></div>\001";
                 returnfiles += "<div class='table-wrapper'><table class='alt'>" +
