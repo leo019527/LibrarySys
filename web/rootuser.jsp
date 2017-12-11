@@ -41,17 +41,23 @@
             </section>
             <section>
                 <span class="icon major fa-cloud accent3"></span>
-                <h3>逾期未还处理</h3>
+                <h3><a href="rootuser/outofdate.jsp"> 逾期未还处理</a></h3>
             </section>
         </div>
         <div class="features-row">
             <section>
                 <span class="icon major fa-cloud accent2"></span>
-                <h3><a href="rootuser/borrowandreturn.jsp"> 图书借阅与归还</a></h3>
+                <h3><a href="rootuser/borrowandreturn.jsp"> 逾期未还用户</a></h3>
             </section>
             <section>
                 <span class="icon major fa-cloud accent4"></span>
-                <h3>挂失处理</h3>
+                <h3><a href="rootuser/booklost.jsp"> 图书挂失</a></h3>
+            </section>
+        </div>
+        <div class="features-row">
+            <section>
+                <span class="icon major fa-cloud accent2"></span>
+                <h3>借书证挂失</h3>
             </section>
         </div>
     </section>

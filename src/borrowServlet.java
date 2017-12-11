@@ -29,31 +29,36 @@ public class borrowServlet extends HttpServlet {
             e.printStackTrace();
         }
         int number2 = Integer.parseInt(request.getParameter("vip").split("：")[1]);
-        if(number2 > number) {
-            returnfiles = "<div class='table-wrapper'><table class='alt'>" +
-                    "<thead><tr><th>bookname</th><th>dateborrow</th><th>归还</th></tr></thead><tbody>";
-            String bookid = request.getParameter("bookid");
-            String sql1 = "UPDATE books SET quantity_out=quantity_out+1 WHERE bookid=" + bookid;
-            instance.insertUpdateDelete(sql1);
-            String sql2 = "INSERT INTO borrow VALUES(" + readerid + ",'" + bookid + "',NOW(),NULL,0)";
-            instance.insertUpdateDelete(sql2);
-            String sql3 = "select bookname,dateborrow FROM books inner join borrow on books.bookid=borrow.bookid WHERE readerid=" + readerid + " and loss<>1 and datereturn is NULL";
-            ResultSet select1 = instance.select(sql3);
-            try {
-                while (select1.next()) {
-                    String tmp1 = select1.getString("bookname");
-                    returnfiles += "<tr><td>" + tmp1 + "</td>";
-                    String tmp = select1.getString("dateborrow");
-                    returnfiles += "<td>" + tmp + "</td>";
-                    returnfiles += "<td><a class='button alt small' onclick='reBooks(\"" + tmp + "\")'>归还</a></td></tr>";
+        ResultSet select = instance.select("select count(*) a from lossreporting where readerid=" + readerid);
+        try {
+            if(number2 > number && !select.next()) {
+                returnfiles = "<div class='table-wrapper'><table class='alt'>" +
+                        "<thead><tr><th>bookname</th><th>dateborrow</th><th>归还</th></tr></thead><tbody>";
+                String bookid = request.getParameter("bookid");
+                String sql1 = "UPDATE books SET quantity_out=quantity_out+1 WHERE bookid=" + bookid;
+                instance.insertUpdateDelete(sql1);
+                String sql2 = "INSERT INTO borrow(readerid,bookid,dateborrow,datereturn,loss) VALUES(" + readerid + ",'" + bookid + "',NOW(),NULL,0)";
+                instance.insertUpdateDelete(sql2);
+                String sql3 = "select bookname,dateborrow FROM books inner join borrow on books.bookid=borrow.bookid WHERE readerid=" + readerid + " and loss<>1 and datereturn is NULL";
+                ResultSet select1 = instance.select(sql3);
+                try {
+                    while (select1.next()) {
+                        String tmp1 = select1.getString("bookname");
+                        returnfiles += "<tr><td>" + tmp1 + "</td>";
+                        String tmp = select1.getString("dateborrow");
+                        returnfiles += "<td>" + tmp + "</td>";
+                        returnfiles += "<td><a class='button alt small' onclick='reBooks(\"" + tmp + "\")'>归还</a></td></tr>";
+                    }
+                    returnfiles += "</tbody></table></div>\001";
+                    returnfiles += "<div class='table-wrapper'><table class='alt'>" +
+                            "<thead><tr><th>bookname</th><th>dateborrow</th></tr></thead><tbody>";
+                } catch (SQLException e) {
                 }
-                returnfiles += "</tbody></table></div>\001";
-                returnfiles += "<div class='table-wrapper'><table class='alt'>" +
-                        "<thead><tr><th>bookname</th><th>dateborrow</th></tr></thead><tbody>";
-            } catch (SQLException e) {
+            }else {
+                returnfiles = "1";
             }
-        }else {
-            returnfiles = "1";
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         response.setContentType("text/xml;charset=UTF-8");
         PrintWriter writer = response.getWriter();

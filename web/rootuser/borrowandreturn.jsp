@@ -92,7 +92,7 @@
                     if(text != "1") {
                         document.getElementById("borrowDIV").innerHTML = text;
                     }else {
-                        alert("借书超过上限");
+                        alert("无法借书");
                     }
                     submit1();
                 }

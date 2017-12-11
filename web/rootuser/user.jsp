@@ -32,6 +32,7 @@
         String caid = request.getParameter("caid");
         String sqls = "UPDATE readers set cardname='图书证',cardid="+c+"+1,level="+caid+",day=curdate() where readerid="+checkin;
         instance.insertUpdateDelete(sqls);
+        instance.insertUpdateDelete("delete from lossreporting where readerid="+checkin);
     }
     String name = request.getParameter("name");
     if(name == null) name="";
