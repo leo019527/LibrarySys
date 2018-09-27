@@ -20,6 +20,7 @@ public class borrowUserLoginServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         Jdbc instance = Jdbc.getInstance();
         String readerid = request.getParameter("readerid");
+        ResultSet select3 = instance.select("select * from lossreporting where readerid=" + readerid);
         String sql = "SELECT readerid,readername,level FROM readers WHERE readerid="+readerid;
         ResultSet select = instance.select(sql);
         try {
@@ -47,7 +48,7 @@ public class borrowUserLoginServlet extends HttpServlet {
                 returnfiles += "</tbody></table></div>\001";
                 returnfiles += "<div class='table-wrapper'><table class='alt'>" +
                         "<thead><tr><th>bookname</th><th>dateborrow</th></tr></thead><tbody>";
-                String sql2 = "select bookname,dateborrow FROM books,borrow WHERE readerid=\"" + readerid1 + "\" and loss=1";
+                String sql2 = "select bookname,dateborrow FROM books inner join borrow on books.bookid=borrow.bookid WHERE readerid=" + readerid1 + " and loss=1";
                 ResultSet select2 = instance.select(sql2);
                 while(select2.next()){
                     returnfiles += "<tr><td>"+select2.getString("bookname")+"</td>";
@@ -60,9 +61,13 @@ public class borrowUserLoginServlet extends HttpServlet {
             }
         } catch (SQLException e) {
         }
-        if(readerid.equals("-1"))
-            returnfiles = "0\001<input id=\"userid\" name=\"userid\" value=\"\" placeholder=\"用户编号\" type=\"text\">\n" +
-                    "<input class=\"button special icon fa-search\" type=\"button\" onclick=\"submit2()\" style=\"margin-top: 0.5em;\" value=\"登录\">";
+        try {
+            if(readerid.equals("-1") || select3.next())
+                returnfiles = "0\001<input id=\"userid\" name=\"userid\" value=\"\" placeholder=\"用户编号\" type=\"text\">\n" +
+                        "<input class=\"button special icon fa-search\" type=\"button\" onclick=\"submit2()\" style=\"margin-top: 0.5em;\" value=\"登录\">";
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         response.setContentType("text/xml;charset=UTF-8");
         PrintWriter writer = response.getWriter();
         writer.write(returnfiles);

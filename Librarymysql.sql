@@ -44,7 +44,7 @@ CREATE TABLE readers(
 	cardname varchar(20),
 	cardid varchar(30),
 	level int NOT NULL DEFAULT 0,
-	day date NOT NULL,
+	day date,
 	PRIMARY KEY(`readerid`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -63,10 +63,11 @@ DROP TABLE IF EXISTS borrow;
 CREATE TABLE borrow(
 	readerid int NOT NULL,
 	bookid varchar(45) NOT NULL,
-	dateborrow date NOT NULL,
+	dateborrow datetime NOT NULL,
 	datereturn date,
 	loss int NOT NULL,
-	PRIMARY KEY(`readerid`,`bookid`),
+	outofdate int DEFAULT 0,
+	PRIMARY KEY(`readerid`,`bookid`,`dateborrow`),
 	FOREIGN KEY (`bookid`) REFERENCES books(`bookid`) 
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -91,3 +92,16 @@ CREATE TABLE lossreporting(
 	lossdate date NOT NULL,
 	PRIMARY KEY(`readerid`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP PROCEDURE IF EXISTS `outdate`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `outdate`()
+	BEGIN
+		UPDATE borrow SET outofdate=1 WHERE TIMESTAMPDIFF(DAY,dateborrow,NOW()) > (SELECT level FROM readers WHERE readers.readerid=borrow.readerid)*30 AND loss IS NOT NULL AND datereturn IS NULL;
+	end;;
+DELIMITER ;
+
+SET GLOBAL event_scheduler = ON;
+
+DROP EVENT IF EXISTS outdateevent;
+CREATE EVENT outdateevent ON SCHEDULE EVERY 1 DAY DO CALL outdate();

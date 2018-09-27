@@ -53,11 +53,11 @@
         <div class="features-row">
             <section>
                 <span class="icon major fa-bolt accent2"></span>
-                <h3>查询图书信息</h3>
+                <h3><a href="users/book.jsp"> 查询图书信息</a></h3>
             </section>
             <section>
                 <span class="icon major fa-area-chart accent3"></span>
-                <h3>借阅信息</h3>
+                <h3><a href="users/borrow.jsp"> 借阅信息</a></h3>
             </section>
         </div>
         <div class="features-row">

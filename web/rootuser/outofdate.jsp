@@ -16,7 +16,7 @@
 %>
 <html>
 <head>
-    <title>逾期未还处理</title>
+    <title>逾期未还</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../assets/css/main.css" />
@@ -32,7 +32,7 @@
 </header>
 <section id="main" class="container" style="width:70em">
     <header style="margin-top: 0;">
-        <p style="font-size: 2.5em;border-top: none;border-bottom: solid 2px #d5d5d5;padding: 0 0 1em 0">书籍借阅与归还</p>
+        <p style="font-size: 2.5em;border-top: none;border-bottom: solid 2px #d5d5d5;padding: 0 0 1em 0">逾期未还</p>
     </header>
     <section class="box special features">
         <div class="table-wrapper">

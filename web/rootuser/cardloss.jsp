@@ -17,7 +17,7 @@
         instance.insertUpdateDelete("INSERT INTO lossreporting values("+item+",CURDATE())");
         instance.insertUpdateDelete("UPDATE readers SET cardname=null,cardid=null,level=0,day=null");
     }
-    String sql = "select readerid,readername from readers where readerid not in (select readerid from lossreporting)";
+    String sql = "select readerid,readername from readers where readerid not in (select readerid from lossreporting) and cardname is not null";
     ResultSet selected = instance.select(sql);
 %>
 <html>

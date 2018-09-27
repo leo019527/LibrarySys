@@ -31,7 +31,9 @@ public class borrowServlet extends HttpServlet {
         int number2 = Integer.parseInt(request.getParameter("vip").split("：")[1]);
         ResultSet select = instance.select("select count(*) a from lossreporting where readerid=" + readerid);
         try {
-            if(number2 > number && !select.next()) {
+            select.next();
+            int a = Integer.parseInt(select.getString("a"));
+            if(number2 > number && a == 0) {
                 returnfiles = "<div class='table-wrapper'><table class='alt'>" +
                         "<thead><tr><th>bookname</th><th>dateborrow</th><th>归还</th></tr></thead><tbody>";
                 String bookid = request.getParameter("bookid");
@@ -49,9 +51,7 @@ public class borrowServlet extends HttpServlet {
                         returnfiles += "<td>" + tmp + "</td>";
                         returnfiles += "<td><a class='button alt small' onclick='reBooks(\"" + tmp + "\")'>归还</a></td></tr>";
                     }
-                    returnfiles += "</tbody></table></div>\001";
-                    returnfiles += "<div class='table-wrapper'><table class='alt'>" +
-                            "<thead><tr><th>bookname</th><th>dateborrow</th></tr></thead><tbody>";
+                    returnfiles += "</tbody></table></div>";
                 } catch (SQLException e) {
                 }
             }else {

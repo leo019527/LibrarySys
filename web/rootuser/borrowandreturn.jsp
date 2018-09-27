@@ -102,7 +102,6 @@
         }
 
         function reBooks(borrowtime) {
-            alert("in");
             var uid = document.getElementById("uid");
             if(uid == null){
                 alert("未登录");
